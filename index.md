@@ -9,11 +9,13 @@ Ddclient is a Perl client used to update dynamic DNS entries for accounts on 'Dy
 Other instuctions on how to use the wiki syntax can be found on https://sourceforge.net/p/necessitas/wiki/markdown_syntax/ 
 
  -->
+ <!--
 # Project for rent
 Unfortunatly I (wimpunk) don't have any spare time to work on this project.  If there's anyone out there willing to help me and eventually tak over this project, pleas let it know at [the mailing list](https://sourceforge.net/p/ddclient/mailman/message/36589979/)
+-->
 
 # Index
-[TOC]
+{:toc}
 
 <!--
 # Important notice
@@ -89,5 +91,5 @@ If you think your configuration is correct, but ddclient doesn't work as you exp
 We know the manual is not very clear, you have to read the example configurations included in the tar-file or you can run ``ddclient --help`` to get more help.
 
 # Help and bugreporting
-If you need extra help, have any bug to report, an enhancement to submit or a feature request, you can use the [ddclient mailing list](https://lists.sourceforge.net/lists/listinfo/ddclient-support) or [create a new ticket](https://sourceforge.net/p/ddclient/discussion/create_topic).  Please only post bugs against the latest version of ddclient.
+If you need extra help, have any bug to report, an enhancement to submit or a feature request, you can use the [ddclient mailing list](https://lists.sourceforge.net/lists/listinfo/ddclient-support) or [create a new issue](https://github.com/ddclient/ddclient/issues/new).  Please only post bugs against the latest version of ddclient.
 If you want to provide a patch for ddclient, please use a pull request on github.  It's the easiest way of working.
