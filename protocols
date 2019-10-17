@@ -1,10 +1,18 @@
+---
+layout: default
+title: Supported Protocols
+nav_order: 2
+---
+
 # Introduction about the supported protocols
-This is an incomplete list of the services supported by ddclient. If your favourite dynamic dns provider isn't here, check the result ddclient --help with the most recent version of ddclient. If it's there, check the patches section on sf.net and if it's really not supported by ddclient you can try to modify ddclient yourself.
+
+This is an incomplete list of the services supported by ddclient. If your favourite dynamic dns provider isn't here, check the result `ddclient --help` with the most recent version of ddclient. If it's there, check the patches section on https://github.com/ddclient/ddclient and if it's really not supported by ddclient you can try to modify ddclient yourself.
 
 Since ddclient version 3.7, ddclient also supports https to update your favourite provider. Use the ssl=yes option to use this feature.
 
 # Overview of the protocols
-[TOC]
+
+{:toc}
 
 # dnspark protocol
 The 'dnspark' protocol is used by DNS service offered by www.dnspark.com.  According to [bugs:#54] you have to use ssl and set the server to www.dnspark.org to get it working but that bug isn't confirmed yet. A possible fix for it can be found on [bugs:#36].
