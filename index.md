@@ -14,9 +14,7 @@ Ddclient is a Perl client used to update dynamic DNS entries for accounts on 'Dy
 
 Other instuctions on how to use the wiki syntax can be found on https://sourceforge.net/p/necessitas/wiki/markdown_syntax/ 
 
- -->
- <!--
-# Project for rent
+Project for rent
 Unfortunatly I (wimpunk) don't have any spare time to work on this project.  If there's anyone out there willing to help me and eventually tak over this project, pleas let it know at [the mailing list](https://sourceforge.net/p/ddclient/mailman/message/36589979/)
 -->
 
