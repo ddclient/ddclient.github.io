@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Navigation Structure
-nav_order: 5
+title: Home page
+nav_order: 1
 ---
 
 <!-- 
