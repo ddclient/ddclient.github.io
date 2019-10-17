@@ -2,3 +2,6 @@ remote_theme: pmarsceill/just-the-docs
 search_enabled: true
 title: ddclient docs
 description: ddclient website
+aux_links:
+  "ddclient on github":
+    - "//github.com/ddclient/ddclient"
