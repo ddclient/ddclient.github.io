@@ -46,9 +46,9 @@ According to [cudeso.be](http://linux.cudeso.be/linuxdoc/ddclient.php):
 You can also check [the mailinglist](https://sourceforge.net/p/ddclient/mailman/message/36589979/) to find out what's going on.
 
 # Installation
-Most distributions have a recent version of ddclient.  Use it unless you really need the latest version. On debian-based systems you can run ``apt-get install ddclient`` and it will install ddclient.  Unless there is a good reason, you should't use the release link.
+Most distributions have a recent version of ddclient.  Use it unless you really need the latest version. On debian-based systems you can run `apt-get install ddclient` and it will install ddclient.  Unless there is a good reason, you should't use the release link.
 
-[release link](https://github.com/ddclient/ddclient/releases)
+[release link](https://github.com/ddclient/ddclient/releases){: .btn }
 
 Ddclient doesn't have an automatic installation procedure. Get the tar-file from using the download button and untar it. Copy the perl script to your favorite location (ex. /usr/sbin)
 and create a ``/etc/ddclient/ddclient.conf`` configuration file. Don't forget to create the cache directory.
