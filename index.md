@@ -3,6 +3,7 @@ layout: default
 title: Navigation Structure
 nav_order: 5
 ---
+
 <!-- 
 
 Ddclient is a Perl client used to update dynamic DNS entries for accounts on 'Dynamic DNS Network Services' free DNS service. It currently supports a lot of different routers and a few different services.
