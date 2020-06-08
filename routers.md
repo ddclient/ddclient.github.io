@@ -12,15 +12,17 @@ DDclient supports a lot of different routers. To configure your favourite router
 If your favourite router isn't here, try to run ddclient --help. This list is rather incomplete so there are a few more routers supported by the most recent version of ddclient.
 
 # Non router option
-option   | information
--------- | -----------
--use=web | obtain IP from an IP discovery page on the web.
--use=if | obtain IP from the `-if {interface}`.  This is the default way if none is specified.
--use=ip | obtain IP from `-ip {address}`.
--use=cmd | obtain IP from the `-cmd {external-command}`.
--use=fw | obtain IP from the firewall specified by `-fw {type|address}`.
+
+| option   | information |
+| -------- | ----------- |
+| -use=web | obtain IP from an IP discovery page on the web. |
+| -use=if | obtain IP from the `-if {interface}`.  This is the default way if none is specified. |
+| -use=ip | obtain IP from `-ip {address}`. |
+| -use=cmd | obtain IP from the `-cmd {external-command}`. |
+| -use=fw | obtain IP from the firewall specified by `-fw {type|address}`. |
 
 # Incomplete list of supported routers
+
 option   | information
 -------- | -----------
 -use=3com-3c886a | obtain IP from 3com 3c886a 56k Lan Modem at the -fw {address}.
