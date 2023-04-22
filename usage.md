@@ -94,4 +94,9 @@ See the sample-ddclient.conf file for further examples.
 ## Multiple IPs
 Since version 3.8.0 ddclient support the update of multiple ip's.  More information can be found [on the ddclient forum](https://sourceforge.net/p/ddclient/mailman/message/20383414/)
 
+## Using environment variables
+As of version 3.11.0_1, ddclient supports using environment variables inside the configuration file. By appending '_env' to a parameter, ddclient will interpret the value of that parameter as the name of an environment variable and use the value of that environment variable as the configuration value. This allows to keep sensitive information such as the login or password outside of the configuration file.
 
+    login_env=DDCLIENT_LOGIN, password_env=DDCLIENT_PASSWORD example.com
+
+This example will use the value of the environment variables DDCLIENT_LOGIN and DDCLIENT_PASSWORD as the login and password for the domain example.com respectively.
