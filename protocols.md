@@ -384,4 +384,4 @@ If you want your favorite provider, please don't just ask.  You can provide your
  * and if you provide a link to the API.
 
 As we don't use all the possible options, we also like it if you could give support if people are having problems with your provider.
-You can also provide a pull request on [github](https://github.com/wimpunk/ddclient/)
+You can also provide a pull request on [github](https://github.com/ddclient/ddclient/)
