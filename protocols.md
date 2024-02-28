@@ -1,23 +1,75 @@
 ---
 layout: default
-title: Supported Protocols
-nav_order: 2
+title: "Configuration: protocols"
+nav_order: 4
 ---
 
-# Introduction about the supported protocols
+# Introduction
 
-This is an incomplete list of the services supported by ddclient. If your favourite dynamic dns provider isn't here, check the result `ddclient --help` with the most recent version of ddclient. If it's there, check the patches section on https://github.com/ddclient/ddclient and if it's really not supported by ddclient you can try to modify ddclient yourself.
+This page explains how to configure protocols for ddclient, which is what ddclient will update when your IP address changes. This is one of the three pieces of ddclient configuration alongside general config and routers. Start on the [homepage](./index.md) for a breakdown of how these interact.
 
-Since ddclient version 3.7, ddclient also supports https to update your favourite provider. Use the ssl=yes option to use this feature.
+This is an incomplete list of the services supported by ddclient. If your favourite dynamic dns provider isn't here, check the result of `ddclient --help` with the most recent version of ddclient. If it's not there, check the code at https://github.com/ddclient/ddclient and if it's really not supported by ddclient you can try to modify ddclient yourself.
 
-# Overview of the protocols
+# Overview
 
 {:toc}
 
-# dnspark protocol
-The 'dnspark' protocol is used by DNS service offered by www.dnspark.com.  According to [bugs:#54] you have to use ssl and set the server to www.dnspark.org to get it working but that bug isn't confirmed yet. A possible fix for it can be found on [bugs:#36].
+# Using multiple protocols
 
-Configuration variables applicable to the 'dsnpark' protocol are:
+You can specify multiple protocols in a single configuration file. For example:
+
+```
+# Router
+usev4=webv4,webv4=ipify-ipv4
+
+# Protocol 1
+protocol=dyndns2
+login=myUsername
+password=myPassword
+myhost.dyndns.org
+
+# Protocol 2
+protocol=dyndns2
+login=anotherUsername
+password=aDifferentPassword
+myotherhost.dyndns.org
+
+# Protocol 3
+protocol=porkbun
+apikey=pk1_abcdef
+secretapikey=sk1_abcdef
+another.example.com
+```
+
+# changeip
+
+The `changeip` protocol is used by DNS services offered by changeip.com.
+
+Applicable configuration variables:
+
+configuration          | information 
+-----------------------|-------------
+protocol=changeip            |
+server=fqdn.of.service       | defaults to nic.changeip.com
+login=service-login          | login name and password registered with the service
+password=service-password    |
+fully.qualified.host         | the host registered with the service.
+
+Example ddclient.conf file entries:
+
+    ## single host update
+    protocol=changeip,                                               \
+    login=my-my-changeip.com-login,                                  \
+    password=my-changeip.com-password                                \
+    myhost.changeip.org
+
+ChangeIP is supported since [r150] based on a patch submitted by Michele Giorato in [e85661ad]
+
+# dnspark
+
+The `dnspark` protocol is used by DNS service offered by www.dnspark.com. According to [bugs:#54] you have to use ssl and set the server to www.dnspark.org to get it working but that bug isn't confirmed yet. A possible fix for it can be found on [bugs:#36].
+
+Applicable configuration variables:
 
 configuration          | information 
 -----------------------|-------------
@@ -54,9 +106,9 @@ Example ddclient.conf file entries:
 
 # dslreports
 
-The 'dslreports1' protocol is used by a free DSL monitoring service offered by www.dslreports.com.
+The `dslreports1` protocol is used by a free DSL monitoring service offered by www.dslreports.com.
 
-Configuration variables applicable to the 'dslreports1' protocol are: [[br]]
+Applicable configuration variables:
 
 configuration          | information 
 -----------------------|-------------
@@ -77,11 +129,35 @@ Example ddclient.conf file entries:
 
 Note: DSL Reports uses a unique number as the host name. This number can be found on the Monitor Control web page.
 
+# duckdns
+
+The `duckdns` protocol is used by the free
+dynamic DNS service offered by www.duckdns.org.
+Check http://www.duckdns.org/install.jsp?tab=linux-cron for API
+
+Applicable configuration variables:
+
+configuration          | information 
+-----------------------|-------------
+protocol=duckdns             |
+server=www.fqdn.of.service   | defaults to www.duckdns.org
+password=service-password    | password (token) registered with the service
+non-fully.qualified.host     | the host registered with the service.
+
+Example ddclient.conf file entries:
+
+    ## single host update
+    protocol=duckdns,                \
+    password=z0mgs3cjur3p4ss         \
+    myhost
+
+DuckDNS is supported since [r179] based on a patch provided by by gkranis on github.
+
 # dyndns1
 
-The 'dyndns1' protocol is a deprecated protocol used by the free dynamic DNS service offered by www.dyndns.com. The 'dyndns2' should be used to update the www.dyndns.com service. However, other services are also using this protocol so support is still provided by ddclient.
+The `dyndns1` protocol is a deprecated protocol used by the free dynamic DNS service that used to be offered by www.dyndns.com. [`dyndns2`](#dyndns2) should be used to update the www.dyndns.com service. However, other services are also using this protocol so support is still provided by ddclient.
 
-Configuration variables applicable to the 'dyndns1' protocol are:
+Applicable configuration variables:
 
 configuration          | information 
 -----------------------|-------------
@@ -113,9 +189,9 @@ Note: you only need one of the examples
 
 # dyndns2
 
-The 'dyndns2' protocol is a newer low-bandwidth protocol used by a free dynamic DNS service offered by www.dyndns.com. It supports features of the older 'dyndns1' in addition to others. 
+The `dyndns2` protocol is a newer low-bandwidth protocol used by a free dynamic DNS service offered by www.dyndns.com. It supports features of the older `dyndns1` protocol in addition to others. 
 
-Configuration variables applicable to the 'dyndns2' protocol are:
+Applicable configuration variables:
 
 configuration          | information 
 -----------------------|-------------
@@ -155,9 +231,9 @@ Example ddclient.conf file entries:
 
 # easydns
 
-The 'easydns' protocol is used by the for fee DNS service offered by www.easydns.com.
+The `easydns` protocol is used by the for fee DNS service offered by www.easydns.com.
 
-Configuration variables applicable to the 'easydns' protocol are:
+Applicable configuration variables are:
 
 configuration          | information 
 -----------------------|-------------
@@ -195,9 +271,9 @@ Example ddclient.conf file entries:
 
 # namecheap
 
-The 'namecheap' protocol is used by DNS service offered by www.namecheap.com.
+The `namecheap` protocol is used by DNS service offered by www.namecheap.com.
 
-Configuration variables applicable to the 'easydns' protocol are:
+Applicable configuration variables:
 
 configuration          | information 
 -----------------------|-------------
@@ -217,9 +293,9 @@ Example ddclient.conf file entries:
 
 # zoneedit1
 
-The 'zoneedit1' protocol is used by a DNS service offered by www.zoneedit.com.
+The `zoneedit1` protocol is used by a DNS service offered by www.zoneedit.com.
 
-Configuration variables applicable to the 'zoneedit1' protocol are:
+Applicable configuration variables:
 
 configuration          | information 
 -----------------------|-------------
@@ -245,36 +321,11 @@ Example ddclient.conf file entries:
     password=my-zoneedit-password                           \
     my.domain.name,my2nd.domain.com
 
-
-# Changeip
-
-The 'changeip' protocol is used by DNS services offered by changeip.com.
-
-Configuration variables applicable to the 'changeip' protocol are:
-
-configuration          | information 
------------------------|-------------
-protocol=changeip            |
-server=fqdn.of.service       | defaults to nic.changeip.com
-login=service-login          | login name and password registered with the service
-password=service-password    |
-fully.qualified.host         | the host registered with the service.
-
-Example ddclient.conf file entries:
-
-    ## single host update
-    protocol=changeip,                                               \
-    login=my-my-changeip.com-login,                                  \
-    password=my-changeip.com-password                                \
-    myhost.changeip.org
-
-ChangeIP is supported since [r150] based on a patch submitted by Michele Giorato in [e85661ad]
-
 # googledomains
 
-The 'googledomains' protocol is used by DNS service offered by www.google.com/domains.
+The `googledomains` protocol is used by DNS service offered by www.google.com/domains.
 
-Configuration variables applicable to the 'googledomains' protocol are:
+Applicable configuration variables:
 
 configuration          | information 
 -----------------------|-------------
@@ -299,38 +350,15 @@ Example ddclient.conf file entries:
 
 Googledomains are supported since [r171] based on a pull request from nelsonjr on github.
 
-# duckdns
-
-The 'duckdns' protocol is used by the free
-dynamic DNS service offered by www.duckdns.org.
-Check http://www.duckdns.org/install.jsp?tab=linux-cron for API
-
-Configuration variables applicable to the 'duckdns' protocol are:
-
-configuration          | information 
------------------------|-------------
-protocol=duckdns             |
-server=www.fqdn.of.service   | defaults to www.duckdns.org
-password=service-password    | password (token) registered with the service
-non-fully.qualified.host     | the host registered with the service.
-
-Example ddclient.conf file entries:
-
-    ## single host update
-    protocol=duckdns,                \
-    password=z0mgs3cjur3p4ss         \
-    myhost
-
-DuckDNS is supported since [r179] based on a patch provided by by gkranis on github.
-
 # nsupdate
-The 'nsupdate' protocol (added in ddclient version 3.8.3) is a wrapper around the `nsupdate` command-line tool. It uses the [RFC 2136 DNS Update protocol](https://www.ietf.org/rfc/rfc2136.txt) to push changes to a zone using the standard DNS communication protocols directly to a DNS server, instead of to a web service operated by a DNS vendor (like most other ddclient protocols do).
+
+The `nsupdate` protocol (added in ddclient version 3.8.3) is a wrapper around the `nsupdate` command-line tool. It uses the [RFC 2136 DNS Update protocol](https://www.ietf.org/rfc/rfc2136.txt) to push changes to a zone using the standard DNS communication protocols directly to a DNS server, instead of to a web service operated by a DNS vendor (like most other ddclient protocols do).
 
 To use 'nsupdate', your DNS server or servers must be configured to accept RFC 2136 DNS Update requests (consult the documentation for your DNS server, or its hosting provider, on how to do this). While it is allowed in RFC 2136 to configure DNS updates without authentication, it is strongly discouraged, and ddclient does not support it. You must generate a TSIG key (with, for example, a tool like `dnssec-keygen`), configure your DNS server to accept only those DNS updates signed by that key, and then create a key file for ddclient+nsupdate to use.
 
 There are two supported key file formats. The first is a pair of symmetric key files output by `dnssec-keygen` (or similar tools) with the same name but different extensions (one ends in `.key` and the other in `.private`). When specifying the key file in your ddclient configuration options, you use the path to the file with the `.key` extension, and `nsupdate` uses it and replaces the extension with `.private` to obtain the second key file. However, newer versions of `dnssec-keygen` generate newer key file formats that `nsupdate` might not understand. A more reliable option is to create a key file containing a `named`-compatible key statement and specify the full path to that (with extension) in your ddclient configuration. See the examples below for more information.
 
-Configuration variables applicable to the 'nsupdate' protocol are:
+Applicable configuration variables:
 
 configuration          | information 
 -----------------------|-------------
@@ -373,15 +401,37 @@ tcp=yes
 dynamic-domain1.mydomain.com,dynamic-domain2.mydomain.com
 ~~~~
 
-# Your-favorite-provider here
-If you want your favorite provider, please don't just ask.  You can provide your own patch against the latest version of ddclient.  It will probably be accepted if:
+# porkbun
 
- * it's a free dynamic DNS provider.
- * if the provider support SSL please add it to the readme.ssl file.
- * if you provide a nice example in the sample-etc_ddclient.conf file.
- * if you don't forget to edit the README.md
- * if your patch applies nicely
- * and if you provide a link to the API.
+The `porkbun` protocol is used by DNS service offered by www.porkbun.com.
+
+Generate API keys at https://porkbun.com/account/api
+
+Applicable configuration variables:
+
+configuration          | information 
+-----------------------|-------------
+protocol=porkbun       |
+apikey=pk1_abc         | the public API key
+secretapikey=sk1_abc   | the secret API key
+fully.qualified.host   | the host registered with the service.
+
+Example ddclient.conf:
+
+```
+protocol=porkbun
+apikey=pk1_abcdef
+secretapikey=sk1_abcdef
+myhost.com
+```
+
+# Your-favorite-provider here
+If you want your favorite provider, please don't just ask. You can raise a [pull request on GitHub](https://github.com/ddclient/ddclient) against the latest version of ddclient. It will probably be accepted if:
+
+* it's a free dynamic DNS provider.
+* if the provider support SSL please add it to the readme.ssl file.
+* if you provide a nice example in the sample-etc_ddclient.conf file.
+* if you don't forget to edit the README.md
+* and if you provide a link to the API.
 
 As we don't use all the possible options, we also like it if you could give support if people are having problems with your provider.
-You can also provide a pull request on [github](https://github.com/ddclient/ddclient/)
