@@ -49,6 +49,18 @@ With this config, executing `ddclient` would start a daemon that every 300 secon
 
 You can set up `ddclient` to run on automatically using other packages on your system, such as [systemd](https://github.com/ddclient/ddclient/blob/master/sample-etc_systemd.service), [cron](https://github.com/ddclient/ddclient/blob/master/sample-etc_cron.d_ddclient), [dhclient](https://github.com/ddclient/ddclient/blob/master/sample-etc_dhclient-exit-hooks), [dhcpc](https://github.com/ddclient/ddclient/blob/master/sample-etc_dhcpc_dhcpcd-eth0.exe) and others. There are additional sample startup scripts in the [GitHub repository](https://github.com/ddclient/ddclient).
 
+## Using environment variables
+
+As of version 3.11.0_1, ddclient supports using environment variables inside the configuration file. By appending '_env' to a parameter, ddclient will interpret the value of that parameter as the name of an environment variable and use the value of that environment variable as the configuration value. This allows to keep sensitive information such as the login or password outside of the configuration file.
+
+```
+login_env=DDCLIENT_LOGIN
+password_env=DDCLIENT_PASSWORD
+myhost.dyndns.org
+```
+
+This example config file will use the value of the environment variables DDCLIENT_LOGIN and DDCLIENT_PASSWORD as the login and password for the domain myhost.dyndns.org respectively.
+
 ## Command-line arguments
 
 For simplicity, it's recommended you use the `ddclient.conf` file over command line arguments. If you can't use the default location, you can use the `file` argument only to read config from a different file, e.g. `ddclient -file ddclientCustom.conf`
